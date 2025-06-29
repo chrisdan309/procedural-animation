@@ -92,7 +92,7 @@ public class EvolutionStrategyConfigSO : ScriptableObject
         config.initialSigma = initialSigma;
         config.minSigma = minSigma;
         config.maxSigma = maxSigma;
-        config.useSelfAdaptation = useSelfAdaptation;
+        //config.useSelfAdaptation = useSelfAdaptation;
         config.targetSuccessRate = targetSuccessRate;
         config.useGlobalSigma = useGlobalSigma;
         config.useIndividualSigmas = useIndividualSigmas;

@@ -23,8 +23,7 @@ public class EvolutionStrategyConfig : EvolutionaryConfig
     [Range(1f, 20f)] public float maxSigma = 10f;
     
     [Header("Adaptation")]
-    public bool useSelfAdaptation = true;
-    public bool useSuccessBasedAdaptation = true;
+    public ESAdaptationType adaptationType = ESAdaptationType.SelfAdaptation;
     [Range(0.1f, 0.3f)] public float targetSuccessRate = 0.2f; // 1/5 rule
     
     [Header("Strategy Parameters")]
@@ -59,7 +58,7 @@ public class EvolutionStrategyConfig : EvolutionaryConfig
                $"Selection: {selectionType}\n" +
                $"Recombination: {recombinationType} (Rate: {recombinationRate:F2})\n" +
                $"Initial σ: {initialSigma:F2}, Range: [{minSigma:F3}, {maxSigma:F1}]\n" +
-               $"Self-Adaptation: {useSelfAdaptation}, Success-Based: {useSuccessBasedAdaptation}\n" +
+               $"Self-Adaptation: {adaptationType == ESAdaptationType.SelfAdaptation}, Success-Based: {adaptationType == ESAdaptationType.SuccessBased}\n" +
                $"Target Success Rate: {targetSuccessRate:F2}";
     }
 }
@@ -82,4 +81,12 @@ public enum ESRecombinationType
     Discrete,      // Recombinación discreta
     Intermediate,  // Recombinación intermedia
     Global         // Recombinación global (todos los padres)
+}
+
+public enum ESAdaptationType
+{
+    None,
+    SelfAdaptation,
+    SuccessBased,
+    Deterministic
 }

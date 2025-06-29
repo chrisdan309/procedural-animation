@@ -55,11 +55,11 @@ public class GeneticAlgorithm : MonoBehaviour, IEvolutionaryAlgorithm
     // Variables privadas adicionales
     private Individual globalBest;
     
-    void Start()
+    /*void Start()
     {
         InitializeAlgorithm();
         // No iniciar automáticamente - permitir control externo
-    }
+    }*/
     
     public IEnumerator RunEvolution()
     {
@@ -123,7 +123,7 @@ public class GeneticAlgorithm : MonoBehaviour, IEvolutionaryAlgorithm
     }
     void Start()
     {
-        StartCoroutine(RunGeneticAlgorithm());
+        StartCoroutine(RunAdvancedGeneticAlgorithm());
     }
 
     IEnumerator RunAdvancedGeneticAlgorithm()
