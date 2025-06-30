@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88f1de9c4f58cc04c9fb621c4bc67dae, type: 3}
+  m_Name: EvolutionStrategyConfig
+  m_EditorClassIdentifier: 
+  mu: 15
+  lambda: 100
+  maxGenerations: 200
+  steps: 50
+  cycleDuration: 2
+  selectionType: 1
+  recombinationType: 2
+  recombinationRate: 0.7
+  initialSigma: 1
+  minSigma: 0.01
+  maxSigma: 10
+  useSelfAdaptation: 1
+  targetSuccessRate: 0.2
+  useGlobalSigma: 1
+  useIndividualSigmas: 1
+  useCorrelatedMutations: 0
+  distanceWeight: 0.4
+  energyWeight: 0.25
+  stabilityWeight: 0.25
+  robustnessWeight: 0.1
+  useAdvancedFitness: 1
+  useParallelEvaluation: 1
+  batchSize: 10

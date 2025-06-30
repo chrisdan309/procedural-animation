@@ -53,6 +53,7 @@ public class EvolutionStrategy : MonoBehaviour, IEvolutionaryAlgorithm
     void Start()
     {
         InitializeES();
+        StartCoroutine(RunEvolution());
     }
 
     void InitializeES()
@@ -521,6 +522,7 @@ public class EvolutionStrategy : MonoBehaviour, IEvolutionaryAlgorithm
     void LogFinalResults()
     {
         Debug.Log("=== EVOLUTION STRATEGY RESULTS ===");
+    
         if (globalBest != null)
         {
             Debug.Log($"Best Individual Fitness: {globalBest.Fitness:F2}");
@@ -534,7 +536,28 @@ public class EvolutionStrategy : MonoBehaviour, IEvolutionaryAlgorithm
             Debug.Log($"Total Improvement: {improvement:F2}");
             Debug.Log($"Convergence Rate: {improvement / generationBestFitness.Count:F3} per generation");
         }
+
+        // 📝 Exportar resultados a CSV
+        try
+        {
+            string path = Application.dataPath + "/ES_FitnessLog.csv"; // Ruta relativa al proyecto
+            List<string> lines = new List<string> { "Generation,BestFitness,AvgFitness,AvgSigma" };
+
+            for (int i = 0; i < generationBestFitness.Count; i++)
+            {
+                string line = $"{i + 1},{generationBestFitness[i]:F4},{generationAvgFitness[i]:F4},{generationSigmaAvg[i]:F4}";
+                lines.Add(line);
+            }
+
+            System.IO.File.WriteAllLines(path, lines.ToArray());
+            Debug.Log($"Fitness log saved to: {path}");
+        }
+        catch (System.Exception ex)
+        {
+            Debug.LogError("Error exporting fitness log: " + ex.Message);
+        }
     }
+    
 
     // Implementación de métodos de interfaz
     public void StopEvolution()

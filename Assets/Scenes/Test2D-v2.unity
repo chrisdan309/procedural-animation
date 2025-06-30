@@ -1496,6 +1496,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1643974318}
   - component: {fileID: 1643974317}
+  - component: {fileID: 1643974319}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -1530,6 +1531,49 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1643974319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1643974316}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba9f1b288aecaa04abe05a58f4d2f928, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  esConfigSO: {fileID: 0}
+  esConfig:
+    populationSize: 50
+    maxGenerations: 100
+    steps: 50
+    cycleDuration: 2
+    batchSize: 10
+    useAdvancedFitness: 1
+    useParallelEvaluation: 1
+    distanceWeight: 0.4
+    energyWeight: 0.25
+    stabilityWeight: 0.25
+    robustnessWeight: 0.1
+    mu: 15
+    lambda: 100
+    selectionType: 1
+    recombinationType: 2
+    recombinationRate: 0.7
+    initialSigma: 1
+    minSigma: 0.01
+    maxSigma: 10
+    adaptationType: 1
+    targetSuccessRate: 0.2
+    useGlobalSigma: 1
+    useIndividualSigmas: 1
+    useCorrelatedMutations: 0
+  jointController: {fileID: 0}
+  robotPrefab: {fileID: 0}
+  parallelManager: {fileID: 0}
+  enableDetailedLogging: 1
+  enableVisualization: 0
 --- !u!4 &1888490751 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3987031050194841884, guid: 2a16f7af0f605814f9db2577f5e18711, type: 3}
@@ -1639,6 +1683,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1985378707}
   - component: {fileID: 1985378708}
+  - component: {fileID: 1985378709}
   m_Layer: 0
   m_Name: AlgorithmController
   m_TagString: Untagged
@@ -1668,7 +1713,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1985378706}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 885070afff6f4614fbaf0c730c66d2f7, type: 3}
   m_Name: 
@@ -1681,6 +1726,60 @@ MonoBehaviour:
   steps: 40
   Robot: {fileID: 6081772424430019571, guid: 9a3344ac72f735e4fb62ecd374da5fbf, type: 3}
   batchSize: 10
+  adaptiveController: {fileID: 0}
+  parallelManager: {fileID: 0}
+  distanceWeight: 0.4
+  energyWeight: 0.25
+  stabilityWeight: 0.25
+  robustnessWeight: 0.1
+  useAdaptiveParameters: 1
+  useAdvancedFitness: 1
+  useParallelEvaluation: 1
+  enableElitism: 1
+  eliteCount: 5
+--- !u!114 &1985378709
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1985378706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba9f1b288aecaa04abe05a58f4d2f928, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  esConfigSO: {fileID: 11400000, guid: c10045a43959e084faf83e28226b95b4, type: 2}
+  esConfig:
+    populationSize: 50
+    maxGenerations: 100
+    steps: 50
+    cycleDuration: 2
+    batchSize: 10
+    useAdvancedFitness: 1
+    useParallelEvaluation: 1
+    distanceWeight: 0.4
+    energyWeight: 0.25
+    stabilityWeight: 0.25
+    robustnessWeight: 0.1
+    mu: 15
+    lambda: 100
+    selectionType: 1
+    recombinationType: 2
+    recombinationRate: 0.7
+    initialSigma: 1
+    minSigma: 0.01
+    maxSigma: 10
+    adaptationType: 1
+    targetSuccessRate: 0.2
+    useGlobalSigma: 1
+    useIndividualSigmas: 1
+    useCorrelatedMutations: 0
+  jointController: {fileID: 7032092510133096114, guid: 9a3344ac72f735e4fb62ecd374da5fbf, type: 3}
+  robotPrefab: {fileID: 6081772424430019571, guid: 9a3344ac72f735e4fb62ecd374da5fbf, type: 3}
+  parallelManager: {fileID: 0}
+  enableDetailedLogging: 1
+  enableVisualization: 1
 --- !u!1 &2012717714
 GameObject:
   m_ObjectHideFlags: 0

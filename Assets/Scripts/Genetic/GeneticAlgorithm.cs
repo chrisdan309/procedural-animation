@@ -36,7 +36,8 @@ public class GeneticAlgorithm : MonoBehaviour, IEvolutionaryAlgorithm
     private float[] fitnessWeights;
     private int currentGeneration = 0;
     private bool isRunning = false;
-    
+    private List<string> generationMetrics;
+
     // Implementación de IEvolutionaryAlgorithm
     public int PopulationSize { get => populationSize; set => populationSize = value; }
     public int MaxGenerations { get => generations; set => generations = value; }
@@ -128,6 +129,9 @@ public class GeneticAlgorithm : MonoBehaviour, IEvolutionaryAlgorithm
 
     IEnumerator RunAdvancedGeneticAlgorithm()
     {
+        generationMetrics = new List<string>();
+        generationMetrics.Add("Generation,BestFitness,AvgFitness"); // encabezado CSV
+
         isRunning = true;
         population = InitializePopulation(populationSize, steps);
 
@@ -209,10 +213,26 @@ public class GeneticAlgorithm : MonoBehaviour, IEvolutionaryAlgorithm
 
         Debug.Log("Advanced Genetic Algorithm Complete!");
         LogFinalResults();
+        SaveMetricsToCSV();
         OnEvolutionComplete?.Invoke();
         isRunning = false;
     }
     
+    void SaveMetricsToCSV()
+    {
+        string filePath = Application.dataPath + "/GeneticMetrics.csv";
+
+        try
+        {
+            System.IO.File.WriteAllLines(filePath, generationMetrics);
+            Debug.Log($"Metrics saved to: {filePath}");
+        }
+        catch (System.Exception ex)
+        {
+            Debug.LogError($"Failed to save metrics: {ex.Message}");
+        }
+    }
+
     IEnumerator EvaluatePopulationAdvanced(List<Individual> population)
     {
         for (int i = 0; i < population.Count; i += batchSize)
@@ -494,7 +514,8 @@ public class GeneticAlgorithm : MonoBehaviour, IEvolutionaryAlgorithm
         Debug.Log($"Generation {currentGeneration + 1}:");
         Debug.Log($"  Best Fitness: {bestFitness:F2}");
         Debug.Log($"  Average Fitness: {avgFitness:F2}");
-        
+        generationMetrics.Add($"{currentGeneration+1},{population[0].Fitness:F4},{avgFitness:F4}");
+
         if (useAdvancedFitness && population[0] != null)
         {
             var best = population[0];
